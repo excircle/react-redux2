@@ -1,9 +1,25 @@
+import React from 'react';
+import { Route, Routes, Navigate } from "react-router-dom";
+import Header from "./common/header";
+import HomePage from './home/HomePage';
+import CoursesPage from './courses/CoursesPage';
+import AboutPage from './about/AboutPage';
+import NotFoundPage from './NotFoundPage';
 import "bootstrap/dist/css/bootstrap.min.css";
 
-export default function App() {
+function App() {
   return (
-    <div>
-      <h1>Fuck IPv6!</h1>
+    <div className="container-fluid">
+      <Header />
+      <Routes>
+        <Route path="/" exact element={<HomePage />} />
+        <Route path="/courses" element={<CoursesPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+        <Route path="/about-page" element={<Navigate replace to="/about" />} />
+      </Routes>
     </div>
   );
 }
+
+export default App;
