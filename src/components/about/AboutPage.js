@@ -1,9 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const baseUrl = process.env.REACT_APP_API_URL;
-console.log(baseUrl);
-
 class AboutPage extends React.Component {
     render() {
         return (
