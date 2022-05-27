@@ -5,11 +5,13 @@ import { saveCourse } from "../../redux/actions/courseActions";
 import { loadAuthors } from "../../redux/actions/authorActions";
 import PropTypes from "prop-types";
 import CourseForm from './CourseForm';
+import { useNavigate } from 'react-router-dom';
 import { newCourse } from "../common/MockData";
 
 function ManageCoursePage({ courses, authors, loadAuthors, loadCourses, saveCourse, ...props }) {
     const [course, setCourse] = useState({ ...props.course });
     const [errors, setErrors] = useState({});
+    const history = useNavigate();
 
     useEffect(() => {
         if (courses.length === 0) {
@@ -37,7 +39,9 @@ function ManageCoursePage({ courses, authors, loadAuthors, loadCourses, saveCour
 
     function handleSave(event) {
         event.preventDefault();
-        saveCourse(course);
+        saveCourse(course).then(() => {
+            history("/courses");
+        });
     }
 
     return (
@@ -57,7 +61,7 @@ ManageCoursePage.propTypes = {
     courses: PropTypes.array.isRequired,
     loadCourses: PropTypes.func.isRequired,
     loadAuthors: PropTypes.func.isRequired,
-    saveCourse: PropTypes.func.isRequired
+    saveCourse: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -71,7 +75,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
     loadCourses,
     loadAuthors,
-    saveCourse
+    saveCourse,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ManageCoursePage);

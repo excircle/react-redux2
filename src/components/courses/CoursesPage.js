@@ -4,6 +4,7 @@ import * as courseActions from "../../redux/actions/courseActions";
 import * as authorActions from "../../redux/actions/authorActions";
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
+import { Link } from "react-router-dom";
 import CourseList from "./CourseList";
 
 class CoursesPage extends React.Component {
@@ -27,6 +28,7 @@ class CoursesPage extends React.Component {
         return (
             <>
                 <h2>Courses</h2>
+                <Link className="btn btn-primary" to="/course">Add Course</Link>
                 <CourseList courses={this.props.courses} />
             </>
         );
