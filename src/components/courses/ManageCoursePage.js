@@ -71,6 +71,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
     loadCourses,
     loadAuthors,
+    saveCourse
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ManageCoursePage);
